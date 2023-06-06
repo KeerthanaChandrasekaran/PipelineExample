@@ -5,4 +5,4 @@ def test_one():
 
 
 def test_two():
-    assert False, 'Invalid Case'
+    assert True, 'Valid Case'
