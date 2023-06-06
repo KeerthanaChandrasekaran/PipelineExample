@@ -1,10 +1,6 @@
 name: Automate Test Run
 
-on: ['workflow_run','workflow_dispatch']
-  workflow_run:
-    workflows: ["Basic Setup"]
-    types:
-      - completed
+on:
   workflow_dispatch:
     inputs:
       choice:
@@ -14,10 +10,13 @@ on: ['workflow_run','workflow_dispatch']
         - test_one
         - test_two
 jobs:
-  build:
+  test_run:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: 'Show git output'
+        run: ${{ toJson(github) }}
 
       - name: Run ${{ inputs.choice }} Test Script
         run: pytest tests::test_script.py::${{ inputs.choice }}
