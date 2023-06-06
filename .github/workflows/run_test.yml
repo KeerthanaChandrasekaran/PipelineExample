@@ -1,0 +1,24 @@
+name: Automate Test Run
+
+on:
+  workflow_run:
+    workflows: ["Basic Setup"]
+    types:
+      - completed
+  workflow_dispatch:
+    inputs:
+      choice:
+        type: choice
+        description: Choose the functionality to be automated
+        options:
+        - test_one
+        - test_two
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run ${{ inputs.choice }} Test Script
+        run: pytest tests::${{ inputs.choice }}
