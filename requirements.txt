@@ -1,0 +1,5 @@
+pandas
+pytest
+pytest-html
+pytest-sugar
+python-docx
