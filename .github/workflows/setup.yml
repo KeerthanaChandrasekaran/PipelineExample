@@ -10,20 +10,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run a one-line script
-        run: echo 'Hello, world!'
-
       - name: Install Python 3
         uses: actions/setup-python@v3
         with:
           python-version: 3
-          cache: 'python'
-          cache-dependency-path: python.lock
-      
-      - name: Install Dependencies
+
+      - name: Caching dependencies
+        uses: actions/cache@v3
         with:
-          cache: 'dependency'
-          cache-dependency-path: dependency.lock
+          path: ~/.env
+          key: python-dep-modules-${{ hashFiles('**/requirements.txt') }}
+
+                
+      - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
