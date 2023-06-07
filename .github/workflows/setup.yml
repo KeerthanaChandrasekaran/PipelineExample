@@ -15,11 +15,13 @@ jobs:
         with:
           python-version: 3
 
-      - name: Caching dependencies
-        uses: actions/cache@v3
-        with:
-          path: ./
-          key: python-dep-modules-${{ hashFiles('**/requirements.txt') }}
+      - name: Create Virtual Environment
+        run: python3 -m venv .env
+        
+      - name: Activate Virtual Environment
+        run: |
+          if [ -f .env ]; then source .env\bin\
+          activate; fi
 
                 
       - name: Install Dependencies
