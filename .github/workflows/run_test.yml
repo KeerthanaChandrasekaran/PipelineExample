@@ -19,11 +19,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-#         with:
-#           path: ${{ env.pythonLocation }}
-#           key: ${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}
-
+          key: ${{ env.pythonLocation }}-pip-${{ hashFiles('requirements.txt') }}
 
       - name: Install Dependencies
         run: pip install -r requirements.txt
@@ -31,3 +27,8 @@ jobs:
       - name: Run ${{ inputs.choice }} Test Script
         run: pytest tests/test_script.py::${{ inputs.choice }}
 
+      - name: Upload artifacts
+        uses: actions@upload-artifact@v3
+        with:
+          name: logs
+          path: ./
