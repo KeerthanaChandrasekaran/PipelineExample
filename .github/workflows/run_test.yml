@@ -15,10 +15,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Activate Virtual Environment
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}
+
+      - name: Install Dependencies
         run: |
-          if [ -f .env ]; then source .env\bin\
-          activate; fi
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
       
       - name: Run ${{ inputs.choice }} Test Script
         run: pytest tests/test_script.py::${{ inputs.choice }}
