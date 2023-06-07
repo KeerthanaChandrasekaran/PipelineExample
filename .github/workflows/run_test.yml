@@ -27,8 +27,8 @@ jobs:
       - name: Run ${{ inputs.choice }} Test Script
         run: pytest tests/test_script.py::${{ inputs.choice }}
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: logs
-          path: ~/
+#       - name: Upload artifacts
+#         uses: actions/upload-artifact@v3
+#         with:
+#           name: logs
+#           path: ~/
