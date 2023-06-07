@@ -15,6 +15,19 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+      - name: Caching dependencies
+        uses: actions/cache@v3
+        with:
+          path: ./
+          key: python-dep-modules-${{ hashFiles('**/requirements.txt') }}
+
+                
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      
       - name: Run ${{ inputs.choice }} Test Script
         run: pytest tests/test_script.py::${{ inputs.choice }}
 
