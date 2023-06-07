@@ -14,15 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: 'Show git output'
-        run: ${{ toJSON(github) }}
-
       
       - name: Caching dependencies
         uses: actions/cache@v3
         with:
-          path: ~/.env
+          path: ./.env
           key: python-dep-modules-${{ hashFiles('**/requirements.txt') }}
 
                 
