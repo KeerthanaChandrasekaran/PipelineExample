@@ -28,5 +28,5 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run ${{ inputs.choice }} Test Script
-        run: pytest tests::test_script.py::${{ inputs.choice }}
+        run: pytest tests/test_script.py::${{ inputs.choice }}
 
