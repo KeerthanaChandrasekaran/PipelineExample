@@ -32,8 +32,3 @@ jobs:
         with:
           name: logs
           path: logReport.log
-          
-      - name: Download logs
-        uses: actions/download-artifact@v3
-        with:
-          name: logs
