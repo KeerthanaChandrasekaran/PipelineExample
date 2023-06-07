@@ -18,8 +18,11 @@ jobs:
       - name: Cache Dependencies
         uses: actions/cache@v3
         with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+#         with:
+#           path: ${{ env.pythonLocation }}
+#           key: ${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}
 
 
       - name: Install Dependencies
